@@ -13,8 +13,12 @@ See [issues](https://github.com/markfirmware/ultibodockerx64/issues)
 
 * [x] build image with stock fpc 3.0.0
 * [x] download and prepare ultibo fpc and core
-* [ ] compile ultibo fpc
+* [ ] compile ultibo fpc as x86-64, hopefully will not need to be built as x86
 * [ ] compile ultibo rtl
 * [ ] compile ultibo packages
+
+## Road Map
+
+* docker image for arm (e.g. raspbian)
 
 That is all

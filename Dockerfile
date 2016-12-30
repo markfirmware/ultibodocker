@@ -38,5 +38,5 @@ RUN cd /root/ultibo/core/fpc/source && \
 #    chmod +x /usr/bin/i386-linux-as && \
 #    which i386-linux-as
 
-#RUN cd /root/ultibo/core/fpc/source && \
-#    make all
+RUN cd /root/ultibo/core/fpc/source && \
+    make all

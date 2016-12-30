@@ -2,9 +2,12 @@
 
 [![Codefresh build status](https://g.codefresh.io/api/badges/build?branch=master&repoName=ultibodockerx64&repoOwner=markfirmware&pipelineName=ultibodockerx64&accountName=markfirmware)](https://g.codefresh.io/repositories/markfirmware/ultibodockerx64/builds?filter=trigger:build)
 
+[![Docker Stars](https://img.shields.io/docker/stars/markfirmware/ultibodockerx64.svg?style=flat-square)](https://hub.docker.com/r/markfirmware/ultibodockerx64/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/markfirmware/ultibodockerx64.svg?style=flat-square)](https://hub.docker.com/r/markfirmware/ultibodockerx64/)
+
 [Image at Docker Hub](https://hub.docker.com/r/markfirmware/ultibodockerx64/)
 
-## Status
+## Status - Not Yet Working
 
 See [issues](https://github.com/markfirmware/ultibodockerx64/issues)
 

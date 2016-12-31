@@ -3,7 +3,7 @@ FROM philcryer/min-jessie
 RUN cd /root && \
     echo 'deb http://httpredir.debian.org/debian experimental main' > /etc/apt/sources.list && \
     apt-get update && \
-    apt-get install fpc && \
+    apt-get install lazarus && \
     fpc
 
 RUN cd /root && \

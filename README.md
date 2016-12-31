@@ -7,15 +7,23 @@
 
 [Image at Docker Hub](https://hub.docker.com/r/markfirmware/ultibodockerx64/)
 
-## Status - Not Yet Working
+## Status - Almost Working - Producing .elf instead of .img
 
 See [issues](https://github.com/markfirmware/ultibodockerx64/issues)
 
 * [x] build image with stock fpc 3.0.0
 * [x] download and prepare ultibo fpc and core
-* [ ] compile ultibo fpc as x86-64, hopefully will not need to be built as x86
-* [ ] compile ultibo rtl
-* [ ] compile ultibo packages
+* [x] compile ultibo fpc as x86-64
+* [x] compile ultibo rtl/packages/etc
+* [ ] compile test app - compiles but produces .elf instead of .img
+
+## Usage
+
+Install docker. The docker run command will pull the docker image from docker hub the first time it is used.
+```
+# (edit program.lpr in current directory)
+docker run --rm -v $(PWD):/tmp markfirmware/ultibodockerx64 /root/ultibo/core/fpc/bin/fpcrpi3 /tmp/program.lpr
+```
 
 ## Road Map
 

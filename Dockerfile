@@ -10,7 +10,7 @@ RUN cd /root && \
     ls && \
     apt-get install -y binutils && \
     dpkg -i fpc_3.0.0-151205_amd64.deb && \
-    fpc
+    fpc -i
 
 RUN cd /root && \
     apt-get install -y unzip
@@ -56,7 +56,7 @@ RUN cd /root && \
     /root/ultibo/core/fpc/bin/fpcmkcfg -d basepath=/root/ultibo/core/fpc/lib/fpc/3.1.1 -o /root/ultibo/core/fpc/bin/fpc.cfg
 
 RUN cd /root && \
-    wget https://launchpadlibrarian.net/287101520/gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 && \
+    wget -q ttps://launchpadlibrarian.net/287101520/gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 && \
     ls
 
 RUN cd /root && \

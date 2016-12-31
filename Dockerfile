@@ -17,9 +17,10 @@ RUN cd /root && \
 RUN cd /root/ultibo/core && \
     wget -q https://github.com/ultibohub/Core/archive/master.zip && \
     unzip -q master.zip && \
-    mv Core-master/source/rtl/ultibo /root/ultibo/core/fpc/source/rtl && \
     mkdir -p /root/ultibo/core/fpc/source/packages && \
+    mv Core-master/source/rtl/ultibo /root/ultibo/core/fpc/source/rtl && \
     mv Core-master/source/packages/ultibounits /root/ultibo/core/fpc/source/packages && \
+    mv Core-master/units /root/ultibo/core/fpc && \
     ls /root/ultibo/core/fpc/source/packages/ultibounits
 
 RUN apk add build-base

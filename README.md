@@ -22,7 +22,7 @@ See [issues](https://github.com/markfirmware/ultibodockerx64/issues)
 Install docker. The docker run command will pull the docker image from docker hub the first time it is used.
 ```
 # (edit program.lpr in current directory)
-docker run --rm -v $(PWD):/tmp markfirmware/ultibodockerx64 /root/ultibo/core/fpc/bin/fpcrpi3 /tmp/program.lpr
+docker run --rm -v $PWD:/tmp markfirmware/ultibodockerx64:master /root/ultibo/core/fpc/bin/fpcrpi3 /tmp/program.lpr
 ```
 
 ## Road Map

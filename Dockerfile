@@ -1,13 +1,13 @@
-FROM frolvlad/alpine-fpc
+FROM philcryer/min-jessie
 
 RUN cd /root && \
-    apk update && \
-    apk add ca-certificates wget && \
-    update-ca-certificates && \
+    echo 'deb http://httpredir.debian.org/debian experimental main' > /etc/apt/sources.list
+    apt-get update && \
+    apt-get install fpc && \
+    fpc
+
+RUN cd /root && \
     wget -q https://github.com/ultibohub/FPC/archive/master.zip && \
-    ls
-
-RUN cd /root && \
     mkdir -p ultibo/core && \
     cd ultibo/core && \
     unzip -q ../../master.zip && \
@@ -23,21 +23,9 @@ RUN cd /root/ultibo/core && \
     mv Core-master/units /root/ultibo/core/fpc && \
     ls /root/ultibo/core/fpc/source/packages/ultibounits
 
-RUN apk add build-base
-
 RUN cd /root/ultibo/core/fpc/source && \
     make distclean && \
     ls
 
-#RUN cd /root && \
-#    echo '#!/bin/bash' > /usr/bin/i386-linux-ld && \
-#    echo 'ld -A elf32-i386 $@' >> /usr/bin/i386-linux-ld && \
-#    chmod +x /usr/bin/i386-linux-ld && \
-#    which i386-linux-ld && \
-#    echo '#!/bin/bash' > /usr/bin/i386-linux-as && \
-#    echo 'as --32 $@' >> /usr/bin/i386-linux-as && \
-#    chmod +x /usr/bin/i386-linux-as && \
-#    which i386-linux-as
-
 RUN cd /root/ultibo/core/fpc/source && \
-    make all
+    make all OS_TARGET=linux CPU_TARGET=x86_64

@@ -8,7 +8,7 @@ RUN cd /root && \
 
 RUN cd /root && \
     ls && \
-    pkg -i fpc_3.0.0-151205_amd64.deb && \
+    dpkg -i fpc_3.0.0-151205_amd64.deb && \
     fpc
 
 RUN cd /root && \

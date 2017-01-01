@@ -10,39 +10,29 @@ RUN cd /root && \
     ls && \
     apt-get install -y binutils && \
     dpkg -i fpc_3.0.0-151205_amd64.deb && \
+    rm fpc_3.0.0-151205_amd64.deb && \
     fpc -i
 
 RUN cd /root && \
-    apt-get install -y unzip
-
-RUN cd /root && \
+    apt-get install -y unzip && \
     wget -q https://github.com/ultibohub/FPC/archive/master.zip && \
     mkdir -p ultibo/core && \
     cd ultibo/core && \
     unzip -q ../../master.zip && \
+    rm ../../master.zip && \
     mv FPC-master fpc && \
-    ls
-
-RUN cd /root/ultibo/core && \
     wget -q https://github.com/ultibohub/Core/archive/master.zip && \
     unzip -q master.zip && \
+    rm master.zip && \
     mkdir -p /root/ultibo/core/fpc/source/packages && \
     mv Core-master/source/rtl/ultibo /root/ultibo/core/fpc/source/rtl && \
     mv Core-master/source/packages/ultibounits /root/ultibo/core/fpc/source/packages && \
-    mv Core-master/units /root/ultibo/core/fpc && \
-    ls /root/ultibo/core/fpc/source/packages/ultibounits
-
-RUN cd /root && \
-    apt-get install -y make libc-dev libc6-i386
+    mv Core-master/units /root/ultibo/core/fpc
 
 RUN cd /root/ultibo/core/fpc/source && \
+    apt-get install -y make libc-dev libc6-i386 && \
     make distclean && \
-    ls
-
-RUN cd /root/ultibo/core/fpc/source && \
-    make all OS_TARGET=linux CPU_TARGET=x86_64
-
-RUN cd /root/ultibo/core/fpc/source && \
+    make all OS_TARGET=linux CPU_TARGET=x86_64 && \
     make install OS_TARGET=linux CPU_TARGET=x86_64 INSTALL_PREFIX=/root/ultibo/core/fpc
 
 RUN cd /root/ultibo/core/fpc/source && \
@@ -50,22 +40,15 @@ RUN cd /root/ultibo/core/fpc/source && \
     /root/ultibo/core/fpc/bin/fpc -i
 
 RUN cd /root && \
-    apt-get install -y gcc
-
-RUN cd /root && \
+    apt-get install -y gcc && \
     /root/ultibo/core/fpc/bin/fpcmkcfg -d basepath=/root/ultibo/core/fpc/lib/fpc/3.1.1 -o /root/ultibo/core/fpc/bin/fpc.cfg
 
 RUN cd /root && \
     wget -q https://launchpadlibrarian.net/287101520/gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 && \
-    ls
-
-RUN cd /root && \
-    apt-get install -y bzip2
-
-RUN cd /root && \
+    apt-get install -y bzip2 && \
     bunzip2 gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 && \
     tar xf gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar && \
-    ls
+    rm gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar
 
 RUN cd /root && \
     cp /root/gcc-arm-none-eabi-5_4-2016q3/arm-none-eabi/bin/as /root/ultibo/core/fpc/bin/arm-ultibo-as && \

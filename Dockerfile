@@ -2,7 +2,7 @@ FROM philcryer/min-jessie
 
 RUN cd /root && \
     apt-get update && \
-    apt-get install -y wget binutils unzip bzip2 && \
+    apt-get install -y wget binutils unzip bzip2 gcc && \
     wget -q -O fpc_3.0.0-151205_amd64.deb 'http://downloads.sourceforge.net/project/lazarus/Lazarus%20Linux%20amd64%20DEB/Lazarus%201.6.2/fpc_3.0.0-151205_amd64.deb?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flazarus%2Ffiles%2FLazarus%2520Linux%2520amd64%2520DEB%2FLazarus%25201.6.2%2F&ts=1483204950&use_mirror=superb-sea2' && \
     dpkg -i fpc_3.0.0-151205_amd64.deb && \
     rm fpc_3.0.0-151205_amd64.deb && \
@@ -29,7 +29,6 @@ RUN cd /root && \
     make install OS_TARGET=linux CPU_TARGET=x86_64 INSTALL_PREFIX=/root/ultibo/core/fpc && \
     cp /root/ultibo/core/fpc/source/compiler/ppcx64 /root/ultibo/core/fpc/bin/ppcx64 && \
     /root/ultibo/core/fpc/bin/fpc -i && \
-    apt-get install -y gcc && \
     /root/ultibo/core/fpc/bin/fpcmkcfg -d basepath=/root/ultibo/core/fpc/lib/fpc/3.1.1 -o /root/ultibo/core/fpc/bin/fpc.cfg
 
 RUN cd /root && \

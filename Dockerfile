@@ -2,14 +2,13 @@ FROM philcryer/min-jessie
 
 RUN cd /root && \
     apt-get update && \
-    apt-get install -y wget binutils && \
+    apt-get install -y wget binutils unzip bzip2 && \
     wget -q -O fpc_3.0.0-151205_amd64.deb 'http://downloads.sourceforge.net/project/lazarus/Lazarus%20Linux%20amd64%20DEB/Lazarus%201.6.2/fpc_3.0.0-151205_amd64.deb?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flazarus%2Ffiles%2FLazarus%2520Linux%2520amd64%2520DEB%2FLazarus%25201.6.2%2F&ts=1483204950&use_mirror=superb-sea2' && \
     dpkg -i fpc_3.0.0-151205_amd64.deb && \
     rm fpc_3.0.0-151205_amd64.deb && \
     fpc -i
 
 RUN cd /root && \
-    apt-get install -y unzip && \
     wget -q https://github.com/ultibohub/FPC/archive/master.zip && \
     mkdir -p ultibo/core && \
     cd ultibo/core && \
@@ -22,9 +21,8 @@ RUN cd /root && \
     mkdir -p /root/ultibo/core/fpc/source/packages && \
     mv Core-master/source/rtl/ultibo /root/ultibo/core/fpc/source/rtl && \
     mv Core-master/source/packages/ultibounits /root/ultibo/core/fpc/source/packages && \
-    mv Core-master/units /root/ultibo/core/fpc
-
-RUN cd /root/ultibo/core/fpc/source && \
+    mv Core-master/units /root/ultibo/core/fpc && \
+    cd /root/ultibo/core/fpc/source && \
     apt-get install -y make libc-dev libc6-i386 && \
     make distclean && \
     make all OS_TARGET=linux CPU_TARGET=x86_64 && \
@@ -36,7 +34,6 @@ RUN cd /root/ultibo/core/fpc/source && \
 
 RUN cd /root && \
     wget -q https://launchpadlibrarian.net/287101520/gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 && \
-    apt-get install -y bzip2 && \
     bunzip2 gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 && \
     tar xf gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar && \
     rm gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar && \
@@ -55,34 +52,28 @@ RUN cd /root && \
 \
     cp /root/ultibo/core/fpc/source/compiler/ppcrossarm /root/ultibo/core/fpc/bin/ppcrossarm
 
-# armv7a rtl
+# armv7a rtl and packages
 
 RUN cd /root/ultibo/core/fpc/source && \
     export PATH=/root/ultibo/core/fpc/bin:$PATH && \
     make rtl_clean CROSSINSTALL=1 OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV7A -CfVFPV3 -CIARM -CaEABIHF -OoFASTMATH" FPC=/root/ultibo/core/fpc/bin/fpc && \
     make rtl OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV7A -CfVFPV3 -CIARM -CaEABIHF -OoFASTMATH" FPC=/root/ultibo/core/fpc/bin/fpc && \
-    make rtl_install CROSSINSTALL=1 FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV7A -CfVFPV3 -CIARM -CaEABIHF -OoFASTMATH" OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a FPC=/root/ultibo/core/fpc/bin/fpc INSTALL_PREFIX=/root/ultibo/core/fpc INSTALL_UNITDIR=/root/ultibo/core/fpc/units/armv7-ultibo/rtl
-
-# armv7a packages
-
-RUN cd /root/ultibo/core/fpc/source && \
+    make rtl_install CROSSINSTALL=1 FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV7A -CfVFPV3 -CIARM -CaEABIHF -OoFASTMATH" OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a FPC=/root/ultibo/core/fpc/bin/fpc INSTALL_PREFIX=/root/ultibo/core/fpc INSTALL_UNITDIR=/root/ultibo/core/fpc/units/armv7-ultibo/rtl && \
+\
     export PATH=/root/ultibo/core/fpc/bin:$PATH && \
     make rtl_clean CROSSINSTALL=1 OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV7A -CfVFPV3 -CIARM -CaEABIHF -OoFASTMATH" FPC=/root/ultibo/core/fpc/bin/fpc && \
     make packages_clean CROSSINSTALL=1 OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV7A -CfVFPV3 -CIARM -CaEABIHF -OoFASTMATH" FPC=/root/ultibo/core/fpc/bin/fpc && \
     make packages OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV7A -CfVFPV3 -CIARM -CaEABIHF -OoFASTMATH -Fu/root/ultibo/core/fpc/units/armv7-ultibo/rtl" FPC=/root/ultibo/core/fpc/bin/fpc && \
     make packages_install CROSSINSTALL=1 FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV7A -CfVFPV3 -CIARM -CaEABIHF -OoFASTMATH" OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a FPC=/root/ultibo/core/fpc/bin/fpc INSTALL_PREFIX=/root/ultibo/core/fpc INSTALL_UNITDIR=/root/ultibo/core/fpc/units/armv7-ultibo/packages
 
-# armv6 rtl
+# armv6 rtl and packages
 
 RUN cd /root/ultibo/core/fpc/source && \
     export PATH=/root/ultibo/core/fpc/bin:$PATH && \
     make rtl_clean CROSSINSTALL=1 OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH" FPC=/root/ultibo/core/fpc/bin/fpc && \
     make rtl OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH" FPC=/root/ultibo/core/fpc/bin/fpc && \
-    make rtl_install CROSSINSTALL=1 FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH" OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 FPC=/root/ultibo/core/fpc/bin/fpc INSTALL_PREFIX=/root/ultibo/core/fpc INSTALL_UNITDIR=/root/ultibo/core/fpc/units/armv6-ultibo/rtl
-
-# armv6 packages
-
-RUN cd /root/ultibo/core/fpc/source && \
+    make rtl_install CROSSINSTALL=1 FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH" OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 FPC=/root/ultibo/core/fpc/bin/fpc INSTALL_PREFIX=/root/ultibo/core/fpc INSTALL_UNITDIR=/root/ultibo/core/fpc/units/armv6-ultibo/rtl && \
+\
     export PATH=/root/ultibo/core/fpc/bin:$PATH && \
     make rtl_clean CROSSINSTALL=1 OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH" FPC=/root/ultibo/core/fpc/bin/fpc && \
     make packages_clean CROSSINSTALL=1 OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH" FPC=/root/ultibo/core/fpc/bin/fpc && \

@@ -131,7 +131,7 @@ RUN cd /root/ultibo/core/fpc/bin && \
     touch fpcrpi3 && \
     echo '#!/bin/bash' >> fpcrpi3 && \
     echo 'export PATH=/root/ultibo/core/fpc/bin:$PATH' >> fpcrpi3 && \
-    echo 'ppcrossarm -B -Tultibo -Parm -CpARMV7A -WpRPI3B @/root/ultibo/core/fpc/bin/rpi3.cfg -O2 $*' >> fpcrpi3 && \
+    echo 'fpc -B -Tultibo -Parm -CpARMV7A -WpRPI3B @/root/ultibo/core/fpc/bin/rpi3.cfg -O2 $*' >> fpcrpi3 && \
     chmod u+x fpcrpi3 && \
 \
     head fpcrpi*

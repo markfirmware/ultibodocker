@@ -20,13 +20,21 @@ See [issues](https://github.com/markfirmware/ultibodocker/issues)
 ## Usage
 
 Install docker. The docker run command will pull the docker image from docker hub the first time it is used.
+* ufpc is for an x86-64 host
+
 ```
 # (edit rpi2 project.lpr in current directory)
-docker run -v $(pwd):/workdir markfirmware/ufpc \
+docker run --rm -v $(pwd):/workdir markfirmware/ufpc \
  -B -Tultibo -O2 -Parm -CpARMV7A -WpRPI2B @/root/ultibo/core/fpc/bin/rpi2.cfg \
  project.lpr
 ```
-* ufpc is for an x86-64 host. Replace with ufpcarm for an arm7hf host
+* ufpcarm is for an arm7hf host
+```
+# (edit rpi2 project.lpr in current directory)
+docker run --rm -v $(pwd):/workdir markfirmware/ufpcarm \
+ -B -Tultibo -O2 -Parm -CpARMV7A -WpRPI2B @/root/ultibo/core/fpc/bin/rpi2.cfg \
+ project.lpr
+```
 
 ## Road Map
 

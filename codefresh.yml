@@ -3,11 +3,11 @@ steps:
   BuildingDockerImage:
     title: Building Docker Image
     type: build
-    image_name: markfirmware/ultibodockerx64
-    working_directory: ./
+    image_name: markfirmware/ufpc
+    working_directory: ./x86
     dockerfile: Dockerfile
   PushingToDockerRegistry:
     title: Pushing to Docker Registry
     type: push
     candidate: '${{BuildingDockerImage}}'
-    tag: ${{CF_BRANCH}}
+    tag: latest

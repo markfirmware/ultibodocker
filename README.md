@@ -6,6 +6,12 @@
 [![](https://images.microbadger.com/badges/image/markfirmware/ultibodockerx64:master.svg)](https://microbadger.com/images/markfirmware/ultibodockerx64:master "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/markfirmware/ultibodockerx64:master.svg)](https://microbadger.com/images/markfirmware/ultibodockerx64:master "Get your own version badge on microbadger.com")
 
+[![Codefresh build status](https://g.codefresh.io/api/badges/build?branch=arm7hf&repoName=ultibodockerx64&repoOwner=markfirmware&pipelineName=ultibodockerx64&accountName=markfirmware)](https://g.codefresh.io/repositories/markfirmware/ultibodockerx64/builds?filter=trigger:build)
+[![Docker Stars](https://img.shields.io/docker/stars/markfirmware/ultibodockerx64.svg?style=flat-square)](https://hub.docker.com/r/markfirmware/ultibodockerx64/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/markfirmware/ultibodockerx64.svg?style=flat-square)](https://hub.docker.com/r/markfirmware/ultibodockerx64/)
+[![](https://images.microbadger.com/badges/image/markfirmware/ufpcarm.svg)](https://microbadger.com/images/markfirmware/ufpcarm "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/markfirmware/ultibodockerx64:master.svg)](https://microbadger.com/images/markfirmware/ultibodockerx64:master "Get your own version badge on microbadger.com")
+
 [Image at Docker Hub](https://hub.docker.com/r/markfirmware/ultibodockerx64/)
 
 ## Status - Working - .img produced but not yet tested

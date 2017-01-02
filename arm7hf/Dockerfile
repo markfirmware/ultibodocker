@@ -4,7 +4,8 @@ RUN [ "cross-build-start" ]
 
 WORKDIR /root
 
-RUN apt-get update && apt-get install -y wget binutils gcc bzip2 libc-dev make unzip libgtk2.0-dev libghc-x11-dev curl binutils-arm-none-eabi
+RUN apt-get update && apt-get install -y libgtk2.0-dev
+RUN apt-get update && apt-get install -y wget binutils gcc bzip2 libc-dev make unzip libghc-x11-dev curl binutils-arm-none-eabi
 
 COPY install.fpc-3.0.raspberry.sh .
 RUN ./install.fpc-3.0.raspberry.sh

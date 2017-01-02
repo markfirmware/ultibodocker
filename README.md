@@ -12,9 +12,10 @@ See [issues](https://github.com/markfirmware/ultibodocker/issues)
 * [x] compile ultibo fpc as x86-64
 * [x] compile ultibo fpc as x86-64 cross arm
 * [x] compile ultibo rtl/packages/etc
-* [x] compile test app
+* [ ] compile ultibohub/Examples - all but number 12 succeed - see [issue 18](https://github.com/markfirmware/ultibodocker/issues/18)
 * [ ] test kernel.bin using qemu
 * [ ] test kernel7.img using rpi3
+* [ ] test the arm7hf edition (ufpcarm) on raspbian
 
 ## Usage
 
@@ -25,10 +26,10 @@ docker run -v $(pwd):/workdir markfirmware/ufpc \
  -B -Tultibo -O2 -Parm -CpARMV7A -WpRPI2B @/root/ultibo/core/fpc/bin/rpi2.cfg \
  project.lpr
 ```
+* ufpc is for an x86-64 host. Replace with ufpcarm for an arm7hf host
 
 ## Road Map
 
-* docker image for arm (e.g. raspbian)
 * include lazarus?
 
 That is all

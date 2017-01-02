@@ -12,9 +12,10 @@ See [issues](https://github.com/markfirmware/ultibodocker/issues)
 * [x] compile ultibo fpc as x86-64
 * [x] compile ultibo fpc as x86-64 cross arm
 * [x] compile ultibo rtl/packages/etc
-* [ ] compile ultibohub/Examples - all but number 12 succeed - see [issue 18](https://github.com/markfirmware/ultibodocker/issues/18)
+* [x] compile ultibohub/Examples for rpi models
+* [ ] test kernel7.img using rpi3b
+* [ ] configure and qemu targets of ultibohub/Examples
 * [ ] test kernel.bin using qemu
-* [ ] test kernel7.img using rpi3
 * [ ] test the arm7hf edition (ufpcarm) on raspbian
 
 ## Usage

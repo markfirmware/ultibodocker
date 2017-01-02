@@ -14,7 +14,7 @@ See [issues](https://github.com/markfirmware/ultibodocker/issues)
 * [x] compile ultibo rtl/packages/etc
 * [x] compile ultibohub/Examples for rpi models
 * [ ] test kernel7.img using rpi3b
-* [ ] configure and qemu targets of ultibohub/Examples
+* [ ] configure and compile qemu targets of ultibohub/Examples
 * [ ] test kernel.bin using qemu
 * [ ] test the arm7hf edition (ufpcarm) on raspbian
 

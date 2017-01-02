@@ -8,7 +8,7 @@
 
 [Image at Docker Hub](https://hub.docker.com/r/markfirmware/ultibodockerx64/)
 
-## Status - Almost Working - Producing .elf instead of .img
+## Status - Working - .img produced but not yet tested
 
 See [issues](https://github.com/markfirmware/ultibodockerx64/issues)
 
@@ -16,18 +16,23 @@ See [issues](https://github.com/markfirmware/ultibodockerx64/issues)
 * [x] download and prepare ultibo fpc and core
 * [x] compile ultibo fpc as x86-64
 * [x] compile ultibo rtl/packages/etc
-* [ ] compile test app - compiles but produces .elf instead of .img
+* [x] compile test app
+* [ ] test kernel.bin using qemu
+* [ ] test kernel7.img using rpi3
 
 ## Usage
 
 Install docker. The docker run command will pull the docker image from docker hub the first time it is used.
 ```
-# (edit program.lpr in current directory)
-docker run --rm -v $PWD:/tmp markfirmware/ultibodockerx64:master /root/ultibo/core/fpc/bin/fpcrpi3 /tmp/program.lpr
+# (edit rpi2 project.lpr in current directory)
+docker run -v $(pwd):/workdir markfirmware/ultibodockerx64:master \
+ -B -Tultibo -O2 -Parm -CpARMV7A -WpRPI2B @/root/ultibo/core/fpc/bin/rpi2.cfg \
+ project.lpr
 ```
 
 ## Road Map
 
 * docker image for arm (e.g. raspbian)
+* include lazarus?
 
 That is all

@@ -98,6 +98,20 @@ RUN make rtl_clean CROSSINSTALL=1 OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a
     make packages OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 BINUTILSPREFIX=arm-none-eabi- FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH -Fu/root/ultibo/core/fpc/units/armv6-ultibo/rtl" FPC=/root/ultibo/core/fpc/bin/fpc && \
     make packages_install CROSSINSTALL=1 BINUTILSPREFIX=arm-none-eabi- FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH" OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 FPC=/root/ultibo/core/fpc/bin/fpc INSTALL_PREFIX=/root/ultibo/core/fpc INSTALL_UNITDIR=/root/ultibo/core/fpc/units/armv6-ultibo/packages
 
+RUN cd /root && \
+    find . -iname 'platform.inc' && \
+    find . -iname 'ShellFileSystem*' && \
+    find . -iname 'GlobalConst*' && \
+    find . -iname 'GlobalTypes*' && \
+    find . -iname 'Threads*' && \
+    find . -iname 'Framebuffer*' && \
+    find . -iname 'BCM2835*'
+
+WORKDIR /test
+RUN apt-get update && apt-get install -y git
+COPY build-examples.sh .
+RUN ./build-examples.sh
+
 WORKDIR /workdir
 ENTRYPOINT ["fpc"]
 CMD ["-i"]

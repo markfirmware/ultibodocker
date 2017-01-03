@@ -11,7 +11,7 @@ set +x
 INCLUDES=-Fi/root/ultibo/core/fpc/source/packages/fv/src
 
 function build {
-    echo message .......... building *.lpr for target $1
+    echo ......................... building *.lpr for target $1
     rm -f *.o
     set -x
     fpc \
@@ -23,38 +23,38 @@ function build {
      $INCLUDES \
      @/root/ultibo/core/fpc/bin/$3 \
      *.lpr
+    set +x
     if [ "$?" != 0 ]
     then
         exit 1
     fi
-    set +x
 }
 
 function build-QEMU {
-    echo build QEMU "-CpARMV7A -WpQEMUVPB" qemuvpb.cfg
+    build QEMU "-CpARMV7A -WpQEMUVPB" qemuvpb.cfg
 }
 
 function build-RPi {
-    build $1 "-CpARMV6 -WpRPIB" rpi.cfg
+    build RPi "-CpARMV6 -WpRPIB" rpi.cfg
 }
 
 function build-RPi2 {
-    build $1 "-CpARMV7A -WpRPI2B" rpi2.cfg
+    build RPi2 "-CpARMV7A -WpRPI2B" rpi2.cfg
 }
 
 function build-RPi3 {
-    build $1 "-CpARMV7A -WpRPI3B" rpi3.cfg
+    build RPi3 "-CpARMV7A -WpRPI3B" rpi3.cfg
 }
 
-for f in [0-9][0-9]-*
+for EXAMPLE in [0-9][0-9]-*
 do
-    cd $f
+    cd $EXAMPLE
     echo
-    echo $f
-    for g in *
+    echo $EXAMPLE
+    for TARGET in *
     do
-        cd $g
-        build-$g $g
+        cd $TARGET
+        build-$TARGET
         cd ..
     done
     cd ..

@@ -3,9 +3,8 @@
 set -x
 mkdir -p github.com/ultibohub
 cd github.com/ultibohub
-git clone https://github.com/markfirmware/Examples
+git clone https://github.com/ultibohub/Examples
 cd Examples
-git checkout shellfilesystem
 set +x
 
 INCLUDES=-Fi/root/ultibo/core/fpc/source/packages/fv/src

@@ -3,7 +3,7 @@ Edition|Build|Size|Version|Stars|Pulls|Docker Hub
 ---|---|---|---|---|---|---
 x86-64|[![Codefresh build status](https://g.codefresh.io/api/badges/build?branch=master&repoName=ultibodocker&repoOwner=markfirmware&pipelineName=ultibodocker&accountName=markfirmware)](https://g.codefresh.io/repositories/markfirmware/ultibodocker/builds?filter=trigger:build) | [![](https://images.microbadger.com/badges/image/markfirmware/ufpc.svg)](https://microbadger.com/images/markfirmware/ufpc "Get your own image badge on microbadger.com") | [![](https://images.microbadger.com/badges/version/markfirmware/ufpc.svg)](https://microbadger.com/images/markfirmware/ufpc "Get your own version badge on microbadger.com") | [![Docker Stars](https://img.shields.io/docker/stars/markfirmware/ufpc.svg?style=flat-square)](https://hub.docker.com/r/markfirmware/ufpc/) | [![Docker Pulls](https://img.shields.io/docker/pulls/markfirmware/ufpc.svg?style=flat-square)](https://hub.docker.com/r/markfirmware/ufpc/) | [ufpc](https://hub.docker.com/r/markfirmware/ufpc/)
 arm7hf|[![Codefresh build status](https://g.codefresh.io/api/badges/build?branch=arm7hf&repoName=ultibodocker&repoOwner=markfirmware&pipelineName=ultibodocker&accountName=markfirmware)](https://g.codefresh.io/repositories/markfirmware/ultibodocker/builds?filter=trigger:build) | [![](https://images.microbadger.com/badges/image/markfirmware/ufpcarm.svg)](https://microbadger.com/images/markfirmware/ufpcarm "Get your own image badge on microbadger.com") | [![](https://images.microbadger.com/badges/version/markfirmware/ufpcarm.svg)](https://microbadger.com/images/markfirmware/ufpcarm "Get your own version badge on microbadger.com") | [![Docker Stars](https://img.shields.io/docker/stars/markfirmware/ufpcarm.svg?style=flat-square)](https://hub.docker.com/r/markfirmware/ufpcarm/) | [![Docker Pulls](https://img.shields.io/docker/pulls/markfirmware/ufpcarm.svg?style=flat-square)](https://hub.docker.com/r/markfirmware/ufpcarm/) | [ufpcarm](https://hub.docker.com/r/markfirmware/ufpcarm/)
-## Status - Working - .img produced but not yet tested
+## Status - x86-64 edition is working - kernel7.img tested on rpi3b
 
 See [issues](https://github.com/markfirmware/ultibodocker/issues)
 
@@ -12,10 +12,11 @@ See [issues](https://github.com/markfirmware/ultibodocker/issues)
 * [x] compile ultibo fpc as x86-64
 * [x] compile ultibo fpc as x86-64 cross arm
 * [x] compile ultibo rtl/packages/etc
-* [ ] compile ultibohub/Examples - all but number 12 succeed - see [issue 18](https://github.com/markfirmware/ultibodocker/issues/18)
+* [x] compile ultibohub/Examples for rpi models
+* [x] test kernel7.img using rpi3b
+* [ ] configure and compile qemu targets of ultibohub/Examples
 * [ ] test kernel.bin using qemu
-* [ ] test kernel7.img using rpi3
-* [ ] test the arm7hf edition (ufpcarm) on raspbian
+* [ ] test the arm7hf edition (ufpcarm) on raspbian - docker install failed - will retry with fresh raspbian
 
 ## Usage
 

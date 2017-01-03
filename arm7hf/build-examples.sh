@@ -5,11 +5,6 @@ mkdir -p github.com/ultibohub
 cd github.com/ultibohub
 git clone https://github.com/ultibohub/Examples
 cd Examples
-rm -rf 12-WebServer
-echo
-echo Example 12-WebServer is excluded - unable to find unit ShellFileSystem
-echo issue https://github.com/markfirmware/ultibodocker/issues/18
-echo
 set +x
 
 INCLUDES=-Fi/root/ultibo/core/fpc/source/packages/fv/src

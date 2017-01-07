@@ -76,6 +76,17 @@ RUN fpc -i && \
     echo '-Fu/root/ultibo/core/fpc/units/armv7-ultibo/packages' >> rpi3.cfg && \
     echo '-Fl/root/ultibo/core/fpc/units/armv7-ultibo/lib' >> rpi3.cfg && \
 \
+    touch qemuvpb.cfg  && \
+    echo '#' >> qemuvpb.cfg && \
+    echo '# QEMU arm7a specific config file' >> qemuvpb.cfg && \
+    echo '#' >> qemuvpb.cfg && \
+    echo '-CfVFPV3' >> qemuvpb.cfg && \
+    echo '-CIARM' >> qemuvpb.cfg && \
+    echo '-CaEABIHF' >> qemuvpb.cfg && \
+    echo '-OoFASTMATH' >> qemuvpb.cfg && \
+    echo '-Fu/root/ultibo/core/fpc/units/armv7-ultibo/rtl' >> qemuvpb.cfg && \
+    echo '-Fu/root/ultibo/core/fpc/units/armv7-ultibo/packages' >> qemuvpb.cfg && \
+    echo '-Fl/root/ultibo/core/fpc/units/armv7-ultibo/lib' >> qemuvpb.cfg
     head -20 *.cfg
 
 # armv7a and armv6 rtl and packages
@@ -97,15 +108,6 @@ RUN make rtl_clean CROSSINSTALL=1 OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv7a
     make packages_clean CROSSINSTALL=1 OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 BINUTILSPREFIX=arm-none-eabi- FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH" FPC=/root/ultibo/core/fpc/bin/fpc && \
     make packages OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 BINUTILSPREFIX=arm-none-eabi- FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH -Fu/root/ultibo/core/fpc/units/armv6-ultibo/rtl" FPC=/root/ultibo/core/fpc/bin/fpc && \
     make packages_install CROSSINSTALL=1 BINUTILSPREFIX=arm-none-eabi- FPCFPMAKE=/root/ultibo/core/fpc/bin/fpc CROSSOPT="-CpARMV6 -CfVFPV2 -CIARM -CaEABIHF -OoFASTMATH" OS_TARGET=ultibo CPU_TARGET=arm SUBARCH=armv6 FPC=/root/ultibo/core/fpc/bin/fpc INSTALL_PREFIX=/root/ultibo/core/fpc INSTALL_UNITDIR=/root/ultibo/core/fpc/units/armv6-ultibo/packages
-
-RUN cd /root && \
-    find . -iname 'platform.inc' && \
-    find . -iname 'ShellFileSystem*' && \
-    find . -iname 'GlobalConst*' && \
-    find . -iname 'GlobalTypes*' && \
-    find . -iname 'Threads*' && \
-    find . -iname 'Framebuffer*' && \
-    find . -iname 'BCM2835*'
 
 WORKDIR /test
 RUN apt-get update && apt-get install -y git

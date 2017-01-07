@@ -86,7 +86,8 @@ RUN fpc -i && \
     echo '-OoFASTMATH' >> qemuvpb.cfg && \
     echo '-Fu/root/ultibo/core/fpc/units/armv7-ultibo/rtl' >> qemuvpb.cfg && \
     echo '-Fu/root/ultibo/core/fpc/units/armv7-ultibo/packages' >> qemuvpb.cfg && \
-    echo '-Fl/root/ultibo/core/fpc/units/armv7-ultibo/lib' >> qemuvpb.cfg
+    echo '-Fl/root/ultibo/core/fpc/units/armv7-ultibo/lib' >> qemuvpb.cfg && \
+\
     head -20 *.cfg
 
 # armv7a and armv6 rtl and packages

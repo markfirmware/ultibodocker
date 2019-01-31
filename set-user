@@ -1,0 +1,19 @@
+#!/bin/bash
+
+IMAGENAME=ultibo-workshop-with-user
+
+cat > user.dockerfile <<__EOF__
+FROM markfirmware/ultibo-workshop
+
+RUN sudo useradd -m -u $(id -u) -s /bin/bash $USER && \
+    echo "$USER ALL=(root) NOPASSWD:ALL" | sudo tee -a /etc/sudoers.d/$USER && \
+    sudo chmod 0440 /etc/sudoers.d/$USER
+USER $USER
+WORKDIR /home/$USER
+RUN echo "export PATH=$PATH:/home/ultibo/ultibo/core/fpc/bin" >> ~/.bashrc
+__EOF__
+docker build -t markfirmware/$IMAGENAME -f user.dockerfile .
+
+#rm -f $IMAGENAME.dockerimage.tgz
+#echo saving $IMAGENAME.dockerimage.tgz ...
+#docker save markfirmware/$IMAGENAME | gzip > $IMAGENAME.dockerimage.tgz

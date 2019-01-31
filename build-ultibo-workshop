@@ -1,0 +1,7 @@
+#!/bin/bash
+
+IMAGENAME=ultibo-workshop
+docker build -t markfirmware/$IMAGENAME -f $IMAGENAME.dockerfile .
+#rm -f $IMAGENAME.dockerimage.tgz
+#echo saving $IMAGENAME.dockerimage.tgz ...
+#docker save markfirmware/$IMAGENAME | gzip > $IMAGENAME.dockerimage.tgz

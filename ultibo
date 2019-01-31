@@ -1,0 +1,4 @@
+#!/bin/bash
+
+IMAGENAME=ultibo-workshop-with-user
+docker run --rm -it --mount type=bind,source=$(pwd),destination=/home/$USER/workspace markfirmware/$IMAGENAME
